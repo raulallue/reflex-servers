@@ -68,7 +68,21 @@ volumes:
 
 > [!IMPORTANT]
 > - **Desarrollo Local**: Por defecto se usa el puerto `8000`. No es necesario configurar nada.
-> - **Producción (Docker)**: La imagen utiliza el puerto `8003` para el backend. Asegúrate de que la variable `API_URL` apunte a la IP de tu servidor con el puerto `:8003`.
+## Persistencia de Datos
+
+La base de datos `reflex.db` está **excluida de Git** (`.gitignore`) por seguridad. Esto significa que cuando subas el código a GitHub, tus datos locales **no se harán públicos**.
+
+### Cómo manejar los datos en Producción
+
+1.  **Volumen de Docker**: El archivo `docker-compose.yml` ya está configurado para persistir los datos en un volumen:
+    ```yaml
+    volumes:
+      - ./reflex.db:/app/reflex.db
+    ```
+2.  **Migración de datos locales**: Si deseas llevar tus datos de desarrollo al servidor:
+    - **No uses GitHub**.
+    - Sube el archivo `reflex.db` directamente a la carpeta del servidor donde se encuentra el `docker-compose.yml` (mediante SCP, FTP o la interfaz de Portainer).
+    - Al reiniciar el contenedor, Reflex detectará tu base de datos con todos los servidores y servicios configurados.
 
 ---
 
