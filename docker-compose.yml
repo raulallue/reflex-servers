@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    image: tu-usuario-dockerhub/servers_reflex:latest
+    container_name: servers_reflex
+    ports:
+      - "3003:3003"
+      - "8003:8003"
+    volumes:
+      - ./reflex.db:/app/reflex.db
+    environment:
+      - PYTHONUNBUFFERED=1
+      - API_URL=http://localhost:8003
+      - ADMIN_USER=admin
+      - ADMIN_PASSWORD=admin
+    restart: always
