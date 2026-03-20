@@ -1,7 +1,7 @@
 services:
   app:
     build: .
-    image: raulallue/reflex-servers:latest
+    image: rallue/reflex-servers:latest
     container_name: servers_reflex
     ports:
       - "3003:3003"

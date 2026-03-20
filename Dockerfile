@@ -2,8 +2,8 @@
 FROM python:3.11-slim
 
 # Evitar que Python genere archivos .pyc y permitir que los logs lleguen al terminal
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 # Variables de entorno por defecto para el administrador
 ENV ADMIN_USER=admin
