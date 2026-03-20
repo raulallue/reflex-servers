@@ -1,7 +1,7 @@
 services:
   app:
     build: .
-    image: tu-usuario-dockerhub/servers_reflex:latest
+    image: raulallue/reflex-servers:latest
     container_name: servers_reflex
     ports:
       - "3003:3003"

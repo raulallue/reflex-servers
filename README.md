@@ -13,14 +13,9 @@ Esta aplicación está configurada para ejecutarse en contenedores, ideal para d
 Para subir la imagen a tu repositorio de Docker Hub:
 
 ```bash
-# Reemplaza 'tu-usuario' con tu nombre de usuario de Docker Hub
-docker build -t tu-usuario/servers_reflex:latest .
-
-# Inicia sesión en Docker Hub si no lo has hecho
-docker login
-
-# Sube la imagen
-docker push tu-usuario/servers_reflex:latest
+# Construir y subir para arquitectura amd64 (común en servidores remotos)
+# Especialmente importante si estás en un Mac con chip Apple (arm64)
+docker buildx build --platform linux/amd64 -t raulallue/reflex-servers:latest . --push
 ```
 
 ### 2. Cómo cambiar la contraseña del Administrador
@@ -49,7 +44,7 @@ Si usas Portainer, puedes desplegar la aplicación usando un **Stack**. Copia el
 version: '3'
 services:
   app:
-    image: tu-usuario/servers_reflex:latest
+    image: raulallue/reflex-servers:latest
     container_name: servers_reflex
     ports:
       - "3003:3003" # Frontend
