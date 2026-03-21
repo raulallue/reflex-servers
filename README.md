@@ -15,7 +15,7 @@ Para subir la imagen a tu repositorio de Docker Hub:
 ```bash
 # Construir y subir para arquitectura amd64 (común en servidores remotos)
 # Especialmente importante si estás en un Mac con chip Apple (arm64)
-docker buildx build --platform linux/amd64 -t rallue/reflex-servers:latest . --push
+docker buildx build --platform linux/amd64 --build-arg API_URL=http://<IP_DE_TU_SERVIDOR>:8003 -t rallue/reflex-servers:latest . --push
 ```
 
 ### 2. Cómo cambiar la contraseña del Administrador

@@ -9,6 +9,10 @@ ENV PYTHONUNBUFFERED=1
 ENV ADMIN_USER=admin
 ENV ADMIN_PASSWORD=admin
 
+# Argumento para la URL de la API durante la compilación
+ARG API_URL
+ENV API_URL=$API_URL
+
 # Instalar dependencias del sistema necesarias
 RUN apt-get update && apt-get install -y \
     curl \
