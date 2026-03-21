@@ -40,5 +40,5 @@ RUN rm -rf .web/public && ln -s /app/assets /app/.web/public
 # Expose the ports for the frontend (3003) and backend (8003)
 EXPOSE 3003 8003
 
-# Comando para arrancar, usando los mismos puertos que el mapeo externo (Patrón Overlay)
-CMD ["sh", "-c", "reflex db migrate && reflex run --env prod --frontend-port 3003 --backend-port 8003"]
+# Comando para arrancar en modo producción (Formato lista para mayor estabilidad)
+CMD ["reflex", "run", "--env", "prod", "--frontend-port", "3003", "--backend-port", "8003"]
