@@ -9,10 +9,6 @@ ENV PYTHONUNBUFFERED=1
 ENV ADMIN_USER=admin
 ENV ADMIN_PASSWORD=admin
 
-# Argumento para la URL de la API durante la compilación
-ARG API_URL
-ENV API_URL=$API_URL
-
 # Instalar dependencias del sistema necesarias
 RUN apt-get update && apt-get install -y \
     curl \
@@ -31,12 +27,15 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiar el proyecto
 COPY . .
 
-# Inicializar Reflex y compilar el frontend para producción
-RUN reflex init
+# Dar permisos de ejecución al entrypoint
+RUN chmod +x entrypoint.sh
+
+# Inicializar Reflex y compilar el frontend con el placeholder
+RUN reflex init --env prod
 
 # Exponer los puertos solicitados (8003 backend, 3003 frontend)
 EXPOSE 8003
 EXPOSE 3003
 
-# Comando para ejecutar migraciones y arrancar en modo producción con los puertos específicos
-CMD ["sh", "-c", "reflex db migrate && reflex run --env prod --frontend-port 3003 --backend-port 8003"]
+# Comando para ejecutar el script de entrada que gestiona la IP dinámica y arranca la app
+ENTRYPOINT ["/app/entrypoint.sh"]

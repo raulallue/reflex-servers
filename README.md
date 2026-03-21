@@ -8,15 +8,11 @@ Una aplicación web profesional y minimalista construida con [Reflex](https://re
 
 Esta aplicación está configurada para ejecutarse en contenedores, ideal para despliegues en servidores remotos con **Portainer**.
 
-### 1. Construir y Subir a Docker Hub
-
-Para subir la imagen a tu repositorio de Docker Hub:
-
-```bash
-# Construir y subir para arquitectura amd64 (común en servidores remotos)
-# Especialmente importante si estás en un Mac con chip Apple (arm64)
-docker buildx build --platform linux/amd64 --build-arg API_URL=http://<IP_DE_TU_SERVIDOR>:8003 -t rallue/reflex-servers:latest . --push
+docker buildx build --platform linux/amd64 -t rallue/reflex-servers:latest . --push
 ```
+
+> [!TIP]
+> **Imagen Universal**: Ya no necesitas pasar la IP durante la construcción. La misma imagen sirve para cualquier servidor.
 
 ### 2. Cómo cambiar la contraseña del Administrador
 
@@ -47,11 +43,7 @@ image: rallue/reflex-servers:latest
 ```
 
 #### Opción B: Compilar directamente en Portainer (Desde Git)
-Si configuras el Stack para que extraiga el código de GitHub:
-1.  En la configuración del Stack, busca la sección **Build definition**.
-2.  Activa los **Build arguments**.
-3.  Añade un argumento llamado `API_URL` y pon como valor `http://<TU_IP_PUBLICA>:8003`.
-4.  Esto hará que Portainer use el `Dockerfile` y "cocine" la IP correcta automáticamente.
+Si configuras el Stack para que extraiga el código de GitHub, Portainer usará el `Dockerfile` automáticamente. Solo asegúrate de configurar la variable `API_URL` en la sección de **Environment variables** del Stack.
 
 #### Contenido del Stack (docker-compose.yml):
 Copia esto en Portainer y ajusta las variables:
