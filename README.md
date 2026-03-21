@@ -69,15 +69,15 @@ La base de datos `reflex.db` está **excluida de Git** (`.gitignore`) por seguri
 
 ### Cómo manejar los datos en Producción
 
-1.  **Volumen de Docker**: El archivo `docker-compose.yml` ya está configurado para persistir los datos en un volumen:
+1.  **Volumen de Docker**: El archivo `docker-compose.yml` utiliza un **volumen nombrado** (`reflex_data`) para la persistencia. Esto es más robusto y evita errores de montaje:
     ```yaml
     volumes:
-      - ./reflex.db:/app/reflex.db
+      - reflex_data:/app
     ```
 2.  **Migración de datos locales**: Si deseas llevar tus datos de desarrollo al servidor:
-    - **No uses GitHub**.
-    - Sube el archivo `reflex.db` directamente a la carpeta del servidor donde se encuentra el `docker-compose.yml` (mediante SCP, FTP o la interfaz de Portainer).
-    - Al reiniciar el contenedor, Reflex detectará tu base de datos con todos los servidores y servicios configurados.
+    - Sube el archivo `reflex.db` al servidor.
+    - Puedes copiarlo al volumen de Docker usando comandos como `docker cp` o instalando el plugin de explorador de archivos en Portainer.
+    - La base de datos en el contenedor se encuentra en `/app/reflex.db`.
 
 ---
 
