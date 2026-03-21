@@ -1,5 +1,5 @@
+version: '3'
 services:
-  app:
   app:
     image: rallue/reflex-servers:v1.2
     container_name: servers_reflex
@@ -9,11 +9,15 @@ services:
     volumes:
       - reflex_data:/app
     environment:
-      - PYTHONUNBUFFERED=1
-      - API_URL=${API_URL:-http://localhost:8003}
+      - API_URL=${API_URL:-http://localhost:8000}
       - ADMIN_USER=admin
       - ADMIN_PASSWORD=admin
     restart: always
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/ping" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
 volumes:
   reflex_data:
