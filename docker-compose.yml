@@ -9,7 +9,7 @@ services:
       - reflex_data:/app
     environment:
       - PYTHONUNBUFFERED=1
-      - API_URL=http://<IP-DE-TU-SERVIDOR>:8003
+      - API_URL=${API_URL:-http://localhost:8003}
       - ADMIN_USER=admin
       - ADMIN_PASSWORD=admin
     restart: always

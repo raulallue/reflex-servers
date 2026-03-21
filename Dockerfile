@@ -27,15 +27,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiar el proyecto
 COPY . .
 
-# Dar permisos de ejecución al entrypoint
-RUN chmod +x entrypoint.sh
-
 # Inicializar Reflex y preparar el frontend
 RUN reflex init
 
 # Exponer los puertos solicitados (8003 backend, 3003 frontend)
-EXPOSE 8003
-EXPOSE 3003
+EXPOSE 8003 3003
 
-# Comando para ejecutar el script de entrada que gestiona la IP dinámica y arranca la app
-ENTRYPOINT ["/app/entrypoint.sh"]
+# Comando para arrancar en modo producción, igual que en el proyecto overlay
+CMD ["reflex", "run", "--env", "prod", "--frontend-port", "3003", "--backend-port", "8003"]
