@@ -1,0 +1,14 @@
+.venv/
+.states/
+.web/
+__pycache__/
+*.py[cod]
+*.db
+.env
+assets/processed/
+.git/
+.github/
+README.md
+task.md
+walkthrough.md
+implementation_plan.md

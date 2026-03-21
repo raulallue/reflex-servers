@@ -27,8 +27,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiar el proyecto
 COPY . .
 
-# Inicializar Reflex y preparar el frontend
-RUN reflex init
+# Limpiar cualquier resto de compilación local y preparar el frontend
+RUN rm -rf .web && reflex init
 
 # Exponer los puertos solicitados (8003 backend, 3003 frontend)
 EXPOSE 8003 3003
