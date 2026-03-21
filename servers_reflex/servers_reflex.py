@@ -1100,20 +1100,11 @@ def login_page():
                 border_radius="24px",
                 box_shadow="0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
             ),
-            rx.vstack(
-                rx.text(
-                    "© 2026 Servers Reflex. Sistema Protegido.",
-                    size="1",
-                    color=rx.color("gray", 8),
-                ),
-                rx.text(
-                    f"Debug API: {rx.config.api_url}",
-                    size="1",
-                    color=rx.color("blue", 8),
-                    opacity=0.6,
-                ),
-                spacing="1",
-                align="center",
+            # Subtle footer message
+            rx.text(
+                "© 2026 Servers Reflex. Sistema Protegido.",
+                size="1",
+                color=rx.color("gray", 8),
                 margin_top="16px",
             ),
             align="center",
@@ -1121,7 +1112,6 @@ def login_page():
         height="100vh",
         width="100%",
         bg=rx.color("gray", 2), # Simple background for compatibility
-        on_mount=rx.script(f"console.log('REFLEX_DEBUG_FRONTEND_API:', '{rx.config.api_url}')"),
     )
 
 app = rx.App(
