@@ -37,8 +37,8 @@ RUN reflex init
 # Link the assets directory to the frontend's public folder
 RUN rm -rf .web/public && ln -s /app/assets /app/.web/public
 
-# Expose the ports for the frontend (3000) and backend (8000)
-EXPOSE 3000 8000
+# Expose the ports for the frontend (3003) and backend (8003)
+EXPOSE 3003 8003
 
-# Comando para arrancar en modo producción usando los puertos nativos
-CMD ["reflex", "run", "--env", "prod", "--frontend-port", "3000", "--backend-port", "8000"]
+# Comando para arrancar en modo producción usando los puertos específicos (1:1 con Portainer)
+CMD ["reflex", "run", "--env", "prod", "--frontend-port", "3003", "--backend-port", "8003"]

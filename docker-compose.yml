@@ -1,20 +1,20 @@
 version: '3'
 services:
   app:
-    image: rallue/reflex-servers:v1.2
+    image: rallue/reflex-servers:v1.3
     container_name: servers_reflex
     ports:
-      - "3000:3000" # Frontend (Estándar)
-      - "8000:8000" # Backend (Estándar)
+      - "3003:3003" # Frontend (1:1)
+      - "8003:8003" # Backend (1:1)
     volumes:
       - reflex_data:/app
     environment:
-      - API_URL=${API_URL:-http://localhost:8000}
+      - API_URL=${API_URL:-http://localhost:8003}
       - ADMIN_USER=admin
       - ADMIN_PASSWORD=admin
     restart: always
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8000/ping" ]
+      test: [ "CMD", "curl", "-f", "http://localhost:8003/ping" ]
       interval: 30s
       timeout: 10s
       retries: 3
