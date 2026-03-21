@@ -1121,6 +1121,7 @@ def login_page():
         height="100vh",
         width="100%",
         bg=rx.color("gray", 2), # Simple background for compatibility
+        on_mount=rx.script(f"console.log('REFLEX_DEBUG_FRONTEND_API:', '{rx.config.api_url}')"),
     )
 
 app = rx.App(
