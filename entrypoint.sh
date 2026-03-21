@@ -9,7 +9,8 @@ echo "Inyectando API_URL: $API_URL"
 
 # Reemplazar el marcador de posición en los archivos JS compilados del frontend
 # Esto permite que la imagen sea genérica y la IP se configure en el despliegue (Portainer)
-find .web -type f -name "*.js" -exec sed -i "s|__REFLEX_API_URL__|$API_URL|g" {} +
+echo "Procesando reemplazos de API_URL en .web/..."
+find .web -type f -name "*.js" -print0 | xargs -0 -r sed -i "s|__REFLEX_API_URL__|$API_URL|g" || echo "No se encontraron archivos JS para procesar en esta etapa."
 
 # Ejecutar migraciones y arrancar la aplicación
 echo "Ejecutando migraciones de base de datos..."

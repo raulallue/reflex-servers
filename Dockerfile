@@ -30,8 +30,8 @@ COPY . .
 # Dar permisos de ejecución al entrypoint
 RUN chmod +x entrypoint.sh
 
-# Inicializar Reflex y compilar el frontend con el placeholder
-RUN reflex init --env prod
+# Inicializar Reflex y preparar el frontend
+RUN reflex init
 
 # Exponer los puertos solicitados (8003 backend, 3003 frontend)
 EXPOSE 8003
