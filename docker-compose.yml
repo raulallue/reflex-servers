@@ -1,10 +1,11 @@
 services:
   app:
-    image: rallue/reflex-servers:latest
+  app:
+    image: rallue/reflex-servers:v1.2
     container_name: servers_reflex
     ports:
-      - "3003:3003" # Frontend (Interno 3003)
-      - "8003:8003" # Backend (Interno 8003)
+      - "3000:3000" # Frontend (Estándar)
+      - "8000:8000" # Backend (Estándar)
     volumes:
       - reflex_data:/app
     environment:
