@@ -38,7 +38,23 @@ Ve a la configuración del **Stack** o del **Contenedor**, busca la pestaña **E
 
 ### 3. Despliegue en Portainer (Stacks)
 
-Si usas Portainer, puedes desplegar la aplicación usando un **Stack**. Copia el contenido de `docker-compose.yml` y ajusta las variables de entorno:
+Si usas Portainer, tienes dos opciones:
+
+#### Opción A: Usar la imagen ya compilada (Recomendado)
+Es la forma más rápida. Compila en tu Mac con el comando del **Paso 1** (asegurándote de poner tu IP) y luego en Portainer simplemente usa esta imagen en tu Stack:
+```yaml
+image: rallue/reflex-servers:latest
+```
+
+#### Opción B: Compilar directamente en Portainer (Desde Git)
+Si configuras el Stack para que extraiga el código de GitHub:
+1.  En la configuración del Stack, busca la sección **Build definition**.
+2.  Activa los **Build arguments**.
+3.  Añade un argumento llamado `API_URL` y pon como valor `http://<TU_IP_PUBLICA>:8003`.
+4.  Esto hará que Portainer use el `Dockerfile` y "cocine" la IP correcta automáticamente.
+
+#### Contenido del Stack (docker-compose.yml):
+Copia esto en Portainer y ajusta las variables:
 
 ```yaml
 version: '3'
@@ -50,7 +66,7 @@ services:
       - "3003:3003" # Frontend
       - "8003:8003" # Backend
     volumes:
-      - servers_reflex_data:/app/
+      - reflex_data:/app
     environment:
       - API_URL=http://<IP-DE-TU-SERVIDOR>:8003
       - ADMIN_USER=admin
@@ -58,7 +74,7 @@ services:
     restart: always
 
 volumes:
-  servers_reflex_data:
+  reflex_data:
 ```
 
 > [!IMPORTANT]
