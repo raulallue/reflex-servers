@@ -21,13 +21,13 @@ Copia este contenido en tu **Stack** de Portainer:
 version: '3'
 services:
   app:
-    image: rallue/reflex-servers:v1.3
+    image: rallue/reflex-servers:v1.4
     container_name: servers_reflex
     ports:
       - "3003:3003" # Frontend (1:1)
       - "8003:8003" # Backend (1:1)
     volumes:
-      - reflex_data:/app
+      - reflex_data:/app/data # Persistencia SEGURA de BBDD
     environment:
       - API_URL=${API_URL:-http://localhost:8003}
       - ADMIN_USER=admin

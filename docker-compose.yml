@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: rallue/reflex-servers:v1.3
+    image: rallue/reflex-servers:v1.4
     container_name: servers_reflex
     ports:
       - "3003:3003" # Frontend (1:1)
