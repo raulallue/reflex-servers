@@ -11,3 +11,7 @@ config = rx.Config(
         rx.plugins.TailwindV4Plugin(),
     ]
 )
+
+print(f"--- REFLEX CONFIG DEBUG ---")
+print(f"API_URL: {config.api_url}")
+print(f"---------------------------")
