@@ -24,11 +24,12 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar el proyecto
-COPY . .
-
-# Dar permisos de ejecución al entrypoint
+# Copiar el script de entrada primero
+COPY entrypoint.sh .
 RUN chmod +x entrypoint.sh
+
+# Copiar el resto del proyecto
+COPY . .
 
 # Inicializar Reflex y preparar el frontend
 RUN reflex init
