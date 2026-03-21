@@ -1,6 +1,5 @@
 services:
   app:
-    build: .
     image: rallue/reflex-servers:latest
     container_name: servers_reflex
     ports:
